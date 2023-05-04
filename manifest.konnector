@@ -1,84 +1,86 @@
 {
-  "version": "1.0.0",
-  "name": "Connector template",
+  "version": "0.1.0",
+  "name": "MyEdenred",
   "type": "konnector",
   "language": "node",
   "icon": "icon.svg",
-  "slug": "template",
-  "source": "git@github.com:konnectors/template.git",
-  "editor": "Cozy",
-  "vendor_link": "Link to the target website",
-  "categories": ["others"],
+  "slug": "edenred",
+  "source": "git@github.com:zdimension/cozy-edenred-connector.git",
+  "editor": "zdimension",
+  "vendor_link": "https://www.myedenred.fr",
+  "categories": ["banking"],
   "fields": {
     "login": {
-      "type": "text"
+      "type": "email"
     },
     "password": {
       "type": "password"
     }
   },
-  "folders": [{"defaultDir": "$administrative/$konnector/$account"}],
   "data_types": [
-    "bill"
+    "bankAccounts",
+    "bankTransactions"
   ],
   "screenshots": [],
   "permissions": {
-    "bank operations": {
+    "bank.accounts": {
+      "type": "io.cozy.bank.accounts"
+    },
+    "bank.operations": {
       "type": "io.cozy.bank.operations"
     },
-    "bills": {
-      "type": "io.cozy.bills"
+    "accounts": {
+      "type": "io.cozy.accounts",
+      "verbs": [
+        "GET"
+      ]
     },
     "files": {
       "type": "io.cozy.files"
-    },
-    "accounts": {
-      "type": "io.cozy.accounts"
     }
   },
   "developer": {
-    "name": "Cozy Cloud",
-    "url": "https://cozy.io"
+    "name": "Tom Niget",
+    "url": "https://github.com/zdimension"
   },
   "langs": ["fr", "en"],
   "locales": {
     "fr": {
-      "short_description": "Récupère la liste de livres",
-      "long_description": "Récupère la liste de livre sur le site exemple",
+      "short_description": "Récupère vos opérations bancaires",
+      "long_description": "Récupère vos opérations bancaires",
       "permissions": {
-        "bank operations": {
-          "description": "Utilisé pour relier les factures à des operations bancaires"
+        "bank.accounts": {
+          "description": "Utilisé pour enregistrer la liste de vos comptes bancaires"
         },
-        "bills": {
-          "description": "Utilisé pour sauver les données des factures"
-        },
-        "files": {
-          "description": "Utilisé pour sauvegarder les factures"
+        "bank.operations": {
+          "description": "Utilisé pour enregistrer les transactions bancaires de vos comptes"
         },
         "accounts": {
           "description": "Utilisé pour obtenir les données du compte"
+        },
+        "bank.balancehistories": {
+          "description": "Utilisé pour enregistrer l'historique du solde de vos comptes"
         }
       }
     },
     "en": {
-      "short_description": "Fetch a list of books",
-      "long_description": "Fetch a list of books from the example website",
+      "short_description": "Retrieves your bank operations",
+      "long_description": "Retrieves your bank operations",
       "permissions": {
-        "bank operations": {
-          "description": "Required to link bank operations to bills"
+        "bank.accounts": {
+          "description": "Required to save the list of bank accounts"
         },
-        "bills": {
-          "description": "Required to save the bills data"
-        },
-        "files": {
-          "description": "Required to save the bills"
+        "bank.operations": {
+          "description": "Required to save your bank operations"
         },
         "accounts": {
           "description": "Required to get the account's data"
+        },
+        "bank.balancehistories": {
+          "description": "Required to save balance histories"
         }
       }
     }
   },
-  "banksTransactionRegExp": "\\bbooks\\b",
   "manifest_version": "2"
 }

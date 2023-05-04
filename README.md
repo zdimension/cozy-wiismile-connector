@@ -1,4 +1,4 @@
-[Cozy][cozy] __YOUR_SUPER_NEW_KONNECTOR_NAME__
+[Cozy][cozy] Edenred Konnector
 =======================================
 
 What's Cozy?
@@ -11,16 +11,11 @@ What's Cozy?
 What is this konnector about ?
 ------------------------------
 
-This konnector retrieves your __SOME_DATA__ and __SOME_OTHER_DATA__ from __SERVICE__
+This konnector retrieves your banking data (cards and operations) from your Edenred account.
 
-__YOUR_DESCRIPTION_HERE__
+**It must be ran locally, using `yarn dev` and a JSON file as specified below. This is due to Edenred not providing a proper way to access its systems through its API.**
 
-### Open a Pull-Request
-
-If you want to work on this konnector and submit code modifications, feel free to open pull-requests!
-</br>See :
-* the [contributing guide][contribute] for more information about how to properly open pull-requests.
-* the [konnectors development guide](https://docs.cozy.io/en/tutorials/konnector/)
+**Edenred's ToS forbid the use of automated tools to access their services. Use this konnector at your own risk.**
 
 ### Run and test
 
@@ -46,7 +41,7 @@ This connector uses [cozy-konnector-libs](https://github.com/cozy/cozy-konnector
 
 ### Maintainer
 
-The lead maintainer for this konnector is __YOUR_NAME__
+The lead maintainer for this konnector is @zdimension.
 
 
 ### Get in touch
@@ -63,7 +58,9 @@ You can reach the Cozy Community by:
 License
 -------
 
-__YOUR_KONNECTOR_NAME__ is developed by __YOUR_NAME__ and distributed under the [AGPL v3 license][agpl-3.0].
+cozy-edenred-connector is developed by @zdimension and distributed under the [AGPL v3 license][agpl-3.0].
+
+Bits taken from [cozy-konnector-boursorama](https://github.com/konnectors/boursorama) and [cozy-plutus-connector](https://github.com/Guekka/cozy-plutus-connector).
 
 [cozy]: https://cozy.io "Cozy Cloud"
 [agpl-3.0]: https://www.gnu.org/licenses/agpl-3.0.html
