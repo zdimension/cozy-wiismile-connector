@@ -38,9 +38,10 @@ class EdenredApi {
   }
 
   async getOperations(card) {
-    return await this.fetch(
+    const reqRes = await this.fetch(
       `accounts/${card.class}-${card.account_ref}/operations`
-    )
+    );
+    return reqRes.filter(op => op.status === 'success')
   }
 
   async getAllOperations() {
