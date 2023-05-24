@@ -44,6 +44,7 @@ module.exports = {
 
     await form.$('input[name="Username"]').then(el => el.type(username))
     await form.$('input[name="Password"]').then(el => el.type(password))
+    await page.waitForTimeout(200)
     await form.$('button[type="submit"]').then(el => el.click())
 
     await page.waitForSelector('input.verifyotp-number', { timeout: 20000 })
