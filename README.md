@@ -35,6 +35,8 @@ yarn standalone
 ```
 For running the konnector connected to a Cozy server and more details see [konnectors tutorial](https://docs.cozy.io/en/tutorials/konnector/)
 
+If everything works, you can run `yarn dev`.
+
 ### Cozy-konnector-libs
 
 This connector uses [cozy-konnector-libs](https://github.com/cozy/cozy-konnector-libs). It brings a bunch of helpers to interact with the Cozy server and to fetch data from an online service.

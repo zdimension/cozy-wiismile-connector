@@ -34,7 +34,7 @@ class EdenredApi {
   }
 
   async getCards() {
-    return await this.fetch(`cards`)
+    return await this.fetch(`cards?wallet_result_level=full`)
   }
 
   async getOperations(card) {
