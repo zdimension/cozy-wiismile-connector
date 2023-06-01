@@ -54,7 +54,7 @@ class EdenredConnector extends BaseKonnector {
 
   parseAccounts(cards) {
     return cards.map(card => {
-      const wallet = card.wallets[0] // TODO: is there ever more than 1 wallet?
+      const wallet = card.wallets.filter(w => w.product_ref === 'CTR_H')[0] // TODO: is there ever more than 1 wallet?
       return {
         vendorId: card.card_ref,
         number: card.card_ref,
@@ -69,7 +69,9 @@ class EdenredConnector extends BaseKonnector {
 
   parseOps(ops) {
     return ops.map(op => {
-      const wallet = op.transaction_details.wallets[0] // TODO: same
+      const wallet = op.transaction_details.wallets.filter(
+        w => w.product_ref === 'CTR_H'
+      )[0] // TODO: same
       return {
         vendorId: op.operation_ref,
         vendorAccountId: op.card.card_ref,
