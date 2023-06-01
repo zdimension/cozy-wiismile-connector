@@ -41,7 +41,9 @@ class EdenredApi {
     const reqRes = await this.fetch(
       `accounts/${card.class}-${card.account_ref}/operations`
     )
-    return reqRes.filter(op => op.status === 'success')
+    return reqRes.filter(
+      op => op.status === 'success' && op.cleared_status === 'cleared'
+    )
   }
 
   async getAllOperations() {
