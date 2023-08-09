@@ -12,10 +12,15 @@ const { Document, BankAccount, BankTransaction, BankingReconciliator } =
 
 Document.registerClient(cozyClient)
 
+const minilog = require('@cozy/minilog')
+minilog.suggest.allow('cozy-client', 'info')
+
 const reconciliator = new BankingReconciliator({ BankAccount, BankTransaction })
 
 class EdenredConnector extends BaseKonnector {
   async fetch(fields) {
+    cozyClient.new.login()
+
     log('info', 'Authenticating ...')
     this.authData = await getClientTokens()
     if (fields.token === undefined) {
