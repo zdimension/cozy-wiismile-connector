@@ -9,11 +9,13 @@ module.exports = {
     // just fetch that JS file and look up
     // todo: this is really weird, right?
     const jsContent = await fetch(
-      'https://myedenred.fr/js/parameters.36712c67.js'
+      'https://myedenred.fr/assets/common.fca3cae5.js'
     ).then(res => res.text())
-    const clientId = jsContent.match(/"ClientId":"([^"]*)"/)[1]
-    const clientSecret = jsContent.match(/"ClientSecret":"([^"]*)"/)[1]
-    return { clientId, clientSecret }
+    const clientId = jsContent.match(/ClientId:([^,]*),/)[1]
+    const clientSecret = jsContent.match(/ClientSecret:([^,]*),/)[1]
+    const clientIdVal = jsContent.match(new RegExp(`,${clientId}="([^"]*)"`))[1]
+    const clientSecretVal = jsContent.match(new RegExp(`,${clientSecret}="([^"]*)"`))[1]
+    return { clientId: clientIdVal, clientSecret: clientSecretVal }
   },
 
   getToken: async function (connector, username, password) {

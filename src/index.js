@@ -19,11 +19,14 @@ const reconciliator = new BankingReconciliator({ BankAccount, BankTransaction })
 
 class EdenredConnector extends BaseKonnector {
   async fetch(fields) {
-    cozyClient.new.login()
+    if (process.env.NODE_ENV !== 'standalone') {
+      cozyClient.new.login()
+    }
 
     log('info', 'Authenticating ...')
     this.authData = await getClientTokens()
     if (fields.token === undefined) {
+      log('info', 'Getting token from credentials ...')
       this.authData.token = await getToken(this, fields.login, fields.password)
     } else {
       this.authData.token = fields.token
