@@ -88,7 +88,8 @@ class EdenredConnector extends BaseKonnector {
         dateOperation: op.date,
         dateImport: new Date().toISOString(),
         currency: op.currency,
-        label: op.outlet.name
+        label: op.outlet.name,
+        originalBankLabel: op.outlet.name
       }
     })
   }
