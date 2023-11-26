@@ -37,6 +37,10 @@ For running the konnector connected to a Cozy server and more details see [konne
 
 If everything works, you can run `yarn dev`.
 
+#### "text is not iterable"
+
+No idea why, but you need to delete node_modules\cozy-jobs-cli\node_modules.
+
 ### Cozy-konnector-libs
 
 This connector uses [cozy-konnector-libs](https://github.com/cozy/cozy-konnector-libs). It brings a bunch of helpers to interact with the Cozy server and to fetch data from an online service.
