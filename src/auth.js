@@ -4,17 +4,25 @@ const fs = require('fs')
 
 module.exports = {
   getClientTokens: async function () {
+    const htmlContent = await fetch('https://www.myedenred.fr').then(res =>
+      res.text()
+    )
+    const jsUrl = htmlContent.match(
+      /<link rel="modulepreload" crossorigin href="(\/assets\/common\.[^"]*)">/
+    )[1]
     // get client ID and secret from https://myedenred.fr/js/parameters.36712c67.js
     // the code contains "ClientId":"..." and "ClientSecret":"...
     // just fetch that JS file and look up
     // todo: this is really weird, right?
-    const jsContent = await fetch(
-      'https://myedenred.fr/assets/common.fca3cae5.js'
-    ).then(res => res.text())
+    const jsContent = await fetch(`https://www.myedenred.fr${jsUrl}`).then(
+      res => res.text()
+    )
     const clientId = jsContent.match(/ClientId:([^,]*),/)[1]
     const clientSecret = jsContent.match(/ClientSecret:([^,]*),/)[1]
     const clientIdVal = jsContent.match(new RegExp(`,${clientId}="([^"]*)"`))[1]
-    const clientSecretVal = jsContent.match(new RegExp(`,${clientSecret}="([^"]*)"`))[1]
+    const clientSecretVal = jsContent.match(
+      new RegExp(`,${clientSecret}="([^"]*)"`)
+    )[1]
     return { clientId: clientIdVal, clientSecret: clientSecretVal }
   },
 
