@@ -24,6 +24,7 @@ module.exports = {
         timeout: 1000
       })
     } catch (e) {
+      // original auth code from @Guekka
       await page.waitForSelector('form', { timeout: 1000 })
 
       const form = await page.$('form')
