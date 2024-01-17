@@ -1,15 +1,14 @@
 {
-  "name": "cozy-edenred-connector",
+  "name": "cozy-swile-connector",
   "version": "0.1.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:zdimension/cozy-edenred-connector.git"
+    "url": "git@github.com:zdimension/cozy-swile-connector.git"
   },
   "keywords": [
     "cozy cloud",
-    "edenred",
-    "myedenred"
+    "swile"
   ],
   "author": "zdimension",
   "license": "AGPL-3.0",

@@ -1,13 +1,13 @@
 {
   "version": "0.1.0",
-  "name": "MyEdenred",
+  "name": "Swile",
   "type": "konnector",
   "language": "node",
   "icon": "icon.svg",
-  "slug": "edenred",
-  "source": "git@github.com:zdimension/cozy-edenred-connector.git",
+  "slug": "swile",
+  "source": "git@github.com:zdimension/cozy-swile-connector.git",
   "editor": "zdimension",
-  "vendor_link": "https://www.myedenred.fr",
+  "vendor_link": "https://swile.co",
   "categories": ["banking"],
   "fields": {
     "login": {

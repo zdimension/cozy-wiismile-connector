@@ -1,4 +1,4 @@
-[Cozy][cozy] Edenred Konnector
+[Cozy][cozy] Swile Konnector
 =======================================
 
 What's Cozy?
@@ -11,11 +11,7 @@ What's Cozy?
 What is this konnector about ?
 ------------------------------
 
-This konnector retrieves your banking data (cards and operations) from your Edenred account.
-
-**It must be ran locally, using `yarn dev` and a JSON file as specified below. This is due to Edenred not providing a proper way to access its systems through its API.**
-
-**Edenred's ToS forbid the use of automated tools to access their services. Use this konnector at your own risk.**
+This konnector retrieves your banking data (cards and operations) from your Swile account.
 
 ### Run and test
 
@@ -64,7 +60,7 @@ You can reach the Cozy Community by:
 License
 -------
 
-cozy-edenred-connector is developed by @zdimension and distributed under the [AGPL v3 license][agpl-3.0].
+cozy-swile-connector is developed by @zdimension and distributed under the [AGPL v3 license][agpl-3.0].
 
 Bits taken from [cozy-konnector-boursorama](https://github.com/konnectors/boursorama) and [cozy-plutus-connector](https://github.com/Guekka/cozy-plutus-connector).
 
