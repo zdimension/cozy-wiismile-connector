@@ -34,11 +34,10 @@ module.exports = {
 
       // reject cookies
       try {
-      await page
-        .waitForSelector('#onetrust-reject-all-handler', { timeout: 2000 })
-        .then(el => el.click())
-      }
-      catch (e) {
+        await page
+          .waitForSelector('#onetrust-reject-all-handler', { timeout: 2000 })
+          .then(el => el.click())
+      } catch (e) {
         log('info', 'No cookie banner')
       }
 

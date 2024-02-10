@@ -65,17 +65,17 @@ class SwileConnector extends BaseKonnector {
 
   parseOps(ops) {
     return ops.map(op => {
-      const transaction = op.transactions[0]
+      const transaction = op.transactions.filter(t => t.type === 'ORIGIN')[0]
       const wallet = transaction.wallet
       const date = new Date(op.date).toISOString()
       return {
         vendorId: transaction.id,
         vendorAccountId: wallet.uuid,
-        amount: op.amount.value / 100,
+        amount: transaction.amount.value / 100,
         date: date,
         dateOperation: date,
         dateImport: new Date().toISOString(),
-        currency: op.amount.currency.iso_3,
+        currency: transaction.amount.currency.iso_3,
         label: op.name,
         originalBankLabel: op.name
       }
