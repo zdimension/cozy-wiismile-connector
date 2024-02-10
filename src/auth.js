@@ -19,20 +19,28 @@ module.exports = {
     })
     let page = await browser.newPage()
     await page.goto(walletUrl)
+    // wait for idle
+    await page.waitForTimeout(1000)
     try {
       await page.waitForFunction(`window.location.href === "${walletUrl}"`, {
         timeout: 1000
       })
     } catch (e) {
+      log('info', 'Not logged in, logging in...')
       // original auth code from @Guekka
       await page.waitForSelector('form', { timeout: 1000 })
 
       const form = await page.$('form')
 
       // reject cookies
+      try {
       await page
-        .waitForSelector('#onetrust-reject-all-handler', { timeout: 30000 })
+        .waitForSelector('#onetrust-reject-all-handler', { timeout: 2000 })
         .then(el => el.click())
+      }
+      catch (e) {
+        log('info', 'No cookie banner')
+      }
 
       await form.$('input[name="username"]').then(el => el.type(username))
       await form.$('input[name="password"]').then(el => el.type(password))
