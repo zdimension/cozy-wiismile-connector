@@ -37,7 +37,7 @@ class SwileApi {
   }
 
   async getAllOperations() {
-    return (await this.fetch(`v2/user/operations?per=999999`)).items.filter(
+    return (await this.fetch(`v3/user/operations?per=999999`)).items.filter(
       op => {
         op.transactions = op.transactions.filter(t => t.type === 'ORIGIN')
         if (op.transactions.length !== 1) {
