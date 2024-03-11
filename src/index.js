@@ -34,10 +34,8 @@ class WiiSmileConnector extends BaseKonnector {
       log('info', 'Parsing ...')
 
       const accounts = this.parseAccounts(cards)
-      const operations = this.parseOps(
-        cards.flatMap(card => card.operations)
-      )
-      
+      const operations = this.parseOps(cards.flatMap(card => card.operations))
+
       const categorizedTransactions = await categorize(operations)
       const { accounts: savedAccounts } = await reconciliator.save(
         accounts,

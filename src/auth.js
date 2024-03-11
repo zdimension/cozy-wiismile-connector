@@ -21,11 +21,12 @@ module.exports = {
         width: 1280,
         height: 720
       },
-      args: ["--proxy-server=192.168.1.4:3129"]
+      args: ['--proxy-server=192.168.1.4:3129']
     })
     let page = await browser.newPage()
     await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36')
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+    )
     await page.goto(walletUrl)
     // wait for idle
     await page.waitForTimeout(1000)
@@ -45,7 +46,7 @@ module.exports = {
 
       await page.waitForTimeout(1000)
 
-      /*await form
+      /* await form
         .waitForSelector('button[type="submit"]', { timeout: 20000 })
         .then(el => el.click())*/
       await page.waitForFunction(`window.location.href === "${walletUrl}"`, {

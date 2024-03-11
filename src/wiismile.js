@@ -15,7 +15,8 @@ class WiiSmileApi {
     myHeaders.append('Pragma', 'no-cache')
     myHeaders.append(
       'User-Agent',
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36')
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+    )
     this.headers = myHeaders
   }
 
@@ -41,12 +42,8 @@ class WiiSmileApi {
   }
 
   async getOperations(card) {
-    const reqRes = await this.fetch(
-      `beneficiary/wallets/${card.id}`
-    )
-    return reqRes.filter(
-      op => op.type === 'operation'
-    )
+    const reqRes = await this.fetch(`beneficiary/wallets/${card.id}`)
+    return reqRes.filter(op => op.type === 'operation')
   }
 
   async getAllOperations() {
