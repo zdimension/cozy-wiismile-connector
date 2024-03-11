@@ -1,14 +1,14 @@
 {
-  "name": "cozy-swile-connector",
+  "name": "cozy-wiismile-connector",
   "version": "0.1.0",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git@github.com:zdimension/cozy-swile-connector.git"
+    "url": "git@github.com:zdimension/cozy-wiismile-connector.git"
   },
   "keywords": [
     "cozy cloud",
-    "swile"
+    "wiismile"
   ],
   "author": "zdimension",
   "license": "AGPL-3.0",

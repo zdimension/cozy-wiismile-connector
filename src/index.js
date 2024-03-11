@@ -4,7 +4,7 @@ const {
   BaseKonnector,
   categorize
 } = require('cozy-konnector-libs')
-const { getSwileData } = require('./swile')
+const { getWiiSmileData } = require('./wiismile')
 const { getToken } = require('./auth')
 const doctypes = require('cozy-doctypes')
 const { Document, BankAccount, BankTransaction, BankingReconciliator } =
@@ -17,7 +17,7 @@ minilog.suggest.allow('cozy-client', 'info')
 
 const reconciliator = new BankingReconciliator({ BankAccount, BankTransaction })
 
-class SwileConnector extends BaseKonnector {
+class WiiSmileConnector extends BaseKonnector {
   async fetch(fields) {
     if (process.env.NODE_ENV !== 'standalone') {
       cozyClient.new.login()
@@ -28,14 +28,16 @@ class SwileConnector extends BaseKonnector {
     }
     try {
       const token = await getToken(this, fields.login, fields.password)
-      const [cards, ops] = await getSwileData(fields.login, token)
+      const cards = await getWiiSmileData(fields.login, token)
 
       log('info', 'Successfully fetched data')
       log('info', 'Parsing ...')
 
       const accounts = this.parseAccounts(cards)
-      const operations = this.parseOps(ops)
-      log('info', operations)
+      const operations = this.parseOps(
+        cards.flatMap(card => card.operations)
+      )
+      
       const categorizedTransactions = await categorize(operations)
       const { accounts: savedAccounts } = await reconciliator.save(
         accounts,
@@ -53,11 +55,11 @@ class SwileConnector extends BaseKonnector {
     return cards.map(card => {
       return {
         vendorId: card.id,
-        number: card.id,
-        currency: card.balance.currency.iso_3,
-        institutionLabel: 'Swile',
-        label: card.label,
-        balance: card.balance.value,
+        number: card.id.toString(),
+        currency: 'EUR',
+        institutionLabel: 'WiiSmile',
+        label: card.category.label,
+        balance: card.amount,
         type: 'Checkings'
       }
     })
@@ -65,25 +67,22 @@ class SwileConnector extends BaseKonnector {
 
   parseOps(ops) {
     return ops.map(op => {
-      const transaction = op.transactions.filter(t => t.type === 'ORIGIN')[0]
-      const wallet = transaction.wallet
-      const date = new Date(op.date).toISOString()
       return {
-        vendorId: transaction.id,
-        vendorAccountId: wallet.uuid,
-        amount: transaction.amount.value / 100,
-        date: date,
-        dateOperation: date,
+        vendorId: op.id,
+        vendorAccountId: op.card.id,
+        amount: op.amount,
+        date: op.date,
+        dateOperation: op.date,
         dateImport: new Date().toISOString(),
-        currency: transaction.amount.currency.iso_3,
-        label: op.name,
-        originalBankLabel: op.name
+        currency: 'EUR',
+        label: op.label,
+        originalBankLabel: op.label
       }
     })
   }
 }
 
-const connector = new SwileConnector({
+const connector = new WiiSmileConnector({
   cheerio: false,
   json: false
 })

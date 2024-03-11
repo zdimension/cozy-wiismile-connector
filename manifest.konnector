@@ -1,13 +1,13 @@
 {
   "version": "0.1.0",
-  "name": "Swile",
+  "name": "WiiSmile",
   "type": "konnector",
   "language": "node",
   "icon": "icon.svg",
-  "slug": "swile",
-  "source": "git@github.com:zdimension/cozy-swile-connector.git",
+  "slug": "wiismile",
+  "source": "git@github.com:zdimension/cozy-wiismile-connector.git",
   "editor": "zdimension",
-  "vendor_link": "https://swile.co",
+  "vendor_link": "https://wiismile.fr",
   "categories": ["banking"],
   "fields": {
     "login": {
