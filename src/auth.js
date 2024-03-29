@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
 const { log } = require('cozy-konnector-libs')
 const fs = require('fs')
 
@@ -16,16 +18,18 @@ module.exports = {
     let browser = await puppeteer.launch({
       headless: false,
       userDataDir: dataDir,
+      //userDataDir: "C:\\Users\\Tom\\AppData\\Local\\Google\\Chrome\\User Data",
+      //args: ['--profile-directory=Default'],
       // set a large viewport to avoid mobile version of the website
       defaultViewport: {
-        width: 1280,
-        height: 720
+        width: 1366,
+        height: 768
       },
-      args: ['--proxy-server=192.168.1.4:3129']
+      //args: ['--proxy-server=192.168.1.4:3129']
     })
     let page = await browser.newPage()
     await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36'
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
     )
     await page.goto(walletUrl)
     // wait for idle
@@ -41,8 +45,8 @@ module.exports = {
 
       const form = await page.$('form')
 
-      await form.$('input[name="username"]').then(el => el.type(username))
-      await form.$('input[name="password"]').then(el => el.type(password))
+      await form.$('input[name="username"]').then(el => el.type(username, {delay: 50}))
+      await form.$('input[name="password"]').then(el => el.type(password, {delay: 50}))
 
       await page.waitForTimeout(1000)
 
