@@ -28,9 +28,9 @@ module.exports = {
       // args: ['--proxy-server=192.168.1.4:3129']
     })
     let page = await browser.newPage()
-    await page.setUserAgent(
-      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'
-    )
+    /* await page.setUserAgent(
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
+    )*/
     await page.goto(walletUrl)
     // wait for idle
     await page.waitForTimeout(1000)
